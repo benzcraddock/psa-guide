@@ -28,6 +28,7 @@ export default function Sleeve() {
         transparent: true,
         opacity: 0,
         side: THREE.DoubleSide,
+        depthWrite: false,
       }),
     [],
   )

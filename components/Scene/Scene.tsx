@@ -3,9 +3,8 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
-import Card from './Card'
+import AssemblyRig from './AssemblyRig'
 import CameraRig from './CameraRig'
-import Sleeve from './Sleeve'
 
 export default function Scene() {
   return (
@@ -19,8 +18,7 @@ export default function Scene() {
       <directionalLight position={[-1.5, 3.5, 3]} intensity={1.4} />
       <Suspense fallback={null}>
         <Environment preset="studio" environmentIntensity={0.15} />
-        <Sleeve />
-        <Card />
+        <AssemblyRig />
       </Suspense>
       <CameraRig />
     </Canvas>
