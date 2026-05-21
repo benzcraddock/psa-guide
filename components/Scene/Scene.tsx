@@ -2,8 +2,9 @@
 
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { Environment, OrbitControls } from '@react-three/drei'
+import { Environment } from '@react-three/drei'
 import Card from './Card'
+import CameraRig from './CameraRig'
 
 export default function Scene() {
   return (
@@ -19,7 +20,7 @@ export default function Scene() {
         <Environment preset="studio" environmentIntensity={0.15} />
         <Card />
       </Suspense>
-      <OrbitControls enablePan={false} enableZoom={true} />
+      <CameraRig />
     </Canvas>
   )
 }

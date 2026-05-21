@@ -2,9 +2,11 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 import { useTexture } from '@react-three/drei'
-import { extend } from '@react-three/fiber'
+import { extend, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { HoloMaterial } from './HoloMaterial'
+import { scrollState } from '../Scroll/scrollState'
+import { easeInOut } from '@/lib/easings'
 
 extend({ HoloMaterial })
 
@@ -32,6 +34,12 @@ export default function Card() {
     noiseTexture.magFilter = THREE.LinearFilter
     noiseTexture.minFilter = THREE.LinearMipmapLinearFilter
   }, [frontTexture, backTexture, noiseTexture])
+
+  useFrame(() => {
+    if (!groupRef.current) return
+    const flip = Math.min(1, Math.max(0, scrollState.global / 0.05))
+    groupRef.current.rotation.y = Math.PI * (1 - easeInOut(flip))
+  })
 
   const edgeMaterial = useMemo(
     () => new THREE.MeshStandardMaterial({ color: '#0a0a0a', roughness: 0.9 }),
