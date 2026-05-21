@@ -9,6 +9,7 @@ const HoloMaterialImpl = shaderMaterial(
     uTexture: null as THREE.Texture | null,
     uNoiseTexture: null as THREE.Texture | null,
     uLightDir: new THREE.Vector3(-0.3, 0.7, 0.6),
+    uSweepOffset: new THREE.Vector2(0, 0),
     uShimmerIntensity: 1.0,
     uGrainDensity: 1.0,
     uMatteFalloff: 1.5,
@@ -32,6 +33,7 @@ const HoloMaterialImpl = shaderMaterial(
     uniform sampler2D uTexture;
     uniform sampler2D uNoiseTexture;
     uniform vec3 uLightDir;
+    uniform vec2 uSweepOffset;
     uniform float uShimmerIntensity;
     uniform float uGrainDensity;
     uniform float uMatteFalloff;
@@ -59,7 +61,7 @@ const HoloMaterialImpl = shaderMaterial(
       float verticalGradient = smoothstep(0.1, 0.85, vUv.y);
       float foilMask = clamp(luminance * verticalGradient * 1.4, 0.0, 1.0);
 
-      vec2 lightUv = vec2(0.5) + lightDir.xy * 0.4;
+      vec2 lightUv = vec2(0.5) + lightDir.xy * 0.4 + uSweepOffset;
       float litZoneDist = distance(vUv, lightUv);
       float litZone = pow(1.0 - smoothstep(0.0, 0.5, litZoneDist), uMatteFalloff);
 

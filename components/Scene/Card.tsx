@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef } from 'react'
 import { useTexture } from '@react-three/drei'
+import { useSpring, animated } from '@react-spring/three'
 import { extend, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 import { HoloMaterial } from './HoloMaterial'
@@ -16,8 +17,21 @@ const CARD_DEPTH = 0.015
 
 const LIGHT_DIR = new THREE.Vector3(-0.3, 0.7, 0.6).normalize()
 
+const SLIDE_START = 0.10
+const SLIDE_END = 0.15
+const CARD_REST_Y = -1.0
+
+const SWEEP_START = 0.03
+const SWEEP_END = 0.06
+
 export default function Card() {
   const groupRef = useRef<THREE.Group>(null)
+  const holoRef = useRef<THREE.ShaderMaterial>(null)
+
+  const [springs, api] = useSpring(
+    () => ({ y: 0, config: { mass: 1, tension: 140, friction: 16 } }),
+    [],
+  )
 
   const [frontTexture, backTexture, noiseTexture] = useTexture([
     '/textures/charizard-front.jpg',
@@ -36,9 +50,33 @@ export default function Card() {
   }, [frontTexture, backTexture, noiseTexture])
 
   useFrame(() => {
-    if (!groupRef.current) return
-    const flip = Math.min(1, Math.max(0, scrollState.global / 0.05))
-    groupRef.current.rotation.y = Math.PI * (1 - easeInOut(flip))
+    const t = scrollState.global
+
+    if (groupRef.current) {
+      const flip = Math.min(1, Math.max(0, t / 0.05))
+      groupRef.current.rotation.y = Math.PI * (1 - easeInOut(flip))
+    }
+
+    const slideRange = SLIDE_END - SLIDE_START
+    const slideRaw = slideRange > 0 ? (t - SLIDE_START) / slideRange : 0
+    const slideT = Math.min(1, Math.max(0, slideRaw))
+    api.start({ y: easeInOut(slideT) * CARD_REST_Y })
+
+    if (holoRef.current) {
+      const sweepRange = SWEEP_END - SWEEP_START
+      const sweepRaw = sweepRange > 0 ? (t - SWEEP_START) / sweepRange : 0
+      const inSweep = sweepRaw >= 0 && sweepRaw <= 1
+      const offset = holoRef.current.uniforms.uSweepOffset.value as THREE.Vector2
+      if (inSweep) {
+        offset.x = -0.8 + 1.6 * sweepRaw
+        offset.y = 0.5 - 1.0 * sweepRaw
+        holoRef.current.uniforms.uShimmerIntensity.value = 1.6
+      } else {
+        offset.x = 0
+        offset.y = 0
+        holoRef.current.uniforms.uShimmerIntensity.value = 1.0
+      }
+    }
   })
 
   const edgeMaterial = useMemo(
@@ -69,21 +107,24 @@ export default function Card() {
   }, [backTexture])
 
   return (
-    <group ref={groupRef}>
-      <mesh>
-        <boxGeometry args={[CARD_WIDTH, CARD_HEIGHT, CARD_DEPTH]} />
-        <primitive object={edgeMaterial} attach="material-0" />
-        <primitive object={edgeMaterial} attach="material-1" />
-        <primitive object={edgeMaterial} attach="material-2" />
-        <primitive object={edgeMaterial} attach="material-3" />
-        <holoMaterial
-          attach="material-4"
-          uTexture={frontTexture}
-          uNoiseTexture={noiseTexture}
-          uLightDir={LIGHT_DIR}
-        />
-        <primitive object={backMaterial} attach="material-5" />
-      </mesh>
-    </group>
+    <animated.group position-y={springs.y}>
+      <group ref={groupRef}>
+        <mesh>
+          <boxGeometry args={[CARD_WIDTH, CARD_HEIGHT, CARD_DEPTH]} />
+          <primitive object={edgeMaterial} attach="material-0" />
+          <primitive object={edgeMaterial} attach="material-1" />
+          <primitive object={edgeMaterial} attach="material-2" />
+          <primitive object={edgeMaterial} attach="material-3" />
+          <holoMaterial
+            ref={holoRef}
+            attach="material-4"
+            uTexture={frontTexture}
+            uNoiseTexture={noiseTexture}
+            uLightDir={LIGHT_DIR}
+          />
+          <primitive object={backMaterial} attach="material-5" />
+        </mesh>
+      </group>
+    </animated.group>
   )
 }

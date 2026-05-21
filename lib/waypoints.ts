@@ -1,4 +1,4 @@
-import { easeInOut, linear } from './easings'
+import { easeInOut, easeOut, linear } from './easings'
 
 export interface CameraWaypoint {
   scrollAt: number
@@ -11,22 +11,29 @@ export interface CameraWaypoint {
 export const waypoints: CameraWaypoint[] = [
   {
     scrollAt: 0,
-    position: [0, 0, 5],
+    position: [0, 0, 8.5],
     lookAt: [0, 0, 0],
     fov: 35,
     easing: easeInOut,
   },
   {
     scrollAt: 0.05,
-    position: [0, 0, 4.5],
+    position: [0, 0, 7.5],
     lookAt: [0, 0, 0],
     fov: 35,
     easing: easeInOut,
   },
   {
-    scrollAt: 0.15,
-    position: [0.4, -0.3, 1.4],
+    scrollAt: 0.09,
+    position: [0, 0, 7.5],
     lookAt: [0, 0, 0],
+    fov: 35,
+    easing: easeOut,
+  },
+  {
+    scrollAt: 0.15,
+    position: [0, -0.4, 5.5],
+    lookAt: [0, -0.5, 0],
     fov: 35,
     easing: linear,
   },
