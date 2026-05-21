@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only docs (not for public repo)
+PRD.md
+CLAUDE_CODE_KICKOFF.md
+
+# Claude Code per-user config
+.claude/settings.local.json

@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PSA Shipping Guide — Project Bible
 
-## Getting Started
+This folder contains the complete handoff package for building the immersive PSA shipping guide. Drop these `.md` files into your project repo before opening Claude Code.
 
-First, run the development server:
+## What's in here
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| File | What it is | When to read |
+|---|---|---|
+| `PRD.md` | The product requirements doc. What we're building, why, scope, risks, success criteria. | Read first. Sets context for everything else. |
+| `STORYBOARD.md` | The 10-beat scroll choreography with shot lists, camera moves, Higgsfield prompts, and the copy bible. | Read second. The creative brief. |
+| `SHADER_SPEC.md` | Technical spec for the holographic card material. Includes a starting R3F shader skeleton. | Read when building the Charizard card (Session 2). |
+| `ARCHITECTURE.md` | Codebase structure, file layout, build order across 10 sessions. | Read before writing any code. |
+| `CLAUDE_CODE_KICKOFF.md` | The exact prompt to paste into Claude Code as your first message. | Use when you open Claude Code. |
+| `reference/` | Photo of the real Mega Charizard X SIR under light, plus screenshots of shopify.design and the original PSA page. | Reference material the shader should be tuned against. |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to use this package
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Create your project folder.** Something like `~/code/psa-shipguide/`.
+2. **Copy these `.md` files into the root of that folder.**
+3. **Create a `reference/` subfolder** and drop in:
+   - The photo of the real card under light
+   - A screenshot or two of shopify.design
+   - The PSA original page screenshot
+4. **Open the folder in Claude Code** (`claude` from the terminal in that folder).
+5. **Paste the contents of `CLAUDE_CODE_KICKOFF.md`** as your first message.
+6. **Build session by session** following the order in `ARCHITECTURE.md`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What's NOT in here (intentionally)
 
-## Learn More
+- No code. Claude Code will write the code with you, not from a template.
+- No Higgsfield prompts in a separate doc — they live inside `STORYBOARD.md` next to the beats they belong to.
+- No design system / color palette doc. The visual language is described in prose in `STORYBOARD.md` and refined as we build.
+- No asset list with download links. The Charizard JPEG and any other reference images go in `/reference/` manually.
 
-To learn more about Next.js, take a look at the following resources:
+## Open questions that became answers (for the record)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Card art:** Mega Charizard X EX SIR, Phantasmal Flames 125/094
+- **Holo shader:** Two-phase approach. Phase 1 ships with the build. Phase 2 (hand-painted normal map + foil mask) is post-launch polish.
+- **Soul Character (Higgsfield hands):** Train via Higgsfield using a coherent generated reference set. Use across all 6 video shots.
+- **End card:** Loop back to step 1 via slabbed card → bare card dissolve.
+- **Mobile:** Deferred. Likely a vertical-video fallback. Not blocking v1.
+- **Hosting:** Vercel.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## What success looks like at the end
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You scroll through the site, see a Mega Charizard X SIR catch the light in 3D, watch it get packaged and shipped, and at the end you can't quite tell where the 3D ended and the video began. The whole thing loops, and you scroll back up just to watch the holo move again.
