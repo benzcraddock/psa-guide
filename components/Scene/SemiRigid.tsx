@@ -13,14 +13,14 @@ const TAB_HEIGHT = 0.55
 const Y_REST = -1.0
 const Y_ABOVE = 3.5
 
-const FADE_START = 0.17
-const FADE_END = 0.20
+const FADE_START = 0.22
+const FADE_END = 0.25
 
-const SLIDE_START = 0.16
-const SLIDE_END = 0.22
+const SLIDE_START = 0.21
+const SLIDE_END = 0.27
 
-const TAB_RAISE_START = 0.22
-const TAB_RAISE_END = 0.27
+const TAB_RAISE_START = 0.27
+const TAB_RAISE_END = 0.32
 
 export default function SemiRigid() {
   const groupRef = useRef<THREE.Group>(null)
