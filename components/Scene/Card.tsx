@@ -22,7 +22,7 @@ const SLIDE_END = 0.15
 const CARD_REST_Y = -1.0
 
 const SWEEP_START = 0.03
-const SWEEP_END = 0.06
+const SWEEP_END = 0.10
 
 export default function Card() {
   const groupRef = useRef<THREE.Group>(null)
@@ -70,7 +70,7 @@ export default function Card() {
       if (inSweep) {
         offset.x = -0.8 + 1.6 * sweepRaw
         offset.y = 0.5 - 1.0 * sweepRaw
-        holoRef.current.uniforms.uShimmerIntensity.value = 1.6
+        holoRef.current.uniforms.uShimmerIntensity.value = 2.2
       } else {
         offset.x = 0
         offset.y = 0

@@ -32,7 +32,7 @@ export default function TeamBag() {
         thickness: 0.04,
         transparent: true,
         opacity: 0,
-        side: THREE.DoubleSide,
+        side: THREE.FrontSide,
         depthWrite: false,
       }),
     [],
@@ -53,9 +53,14 @@ export default function TeamBag() {
       const foldRange = FLAP_FOLD_END - FLAP_FOLD_START
       const foldRaw = foldRange > 0 ? (t - FLAP_FOLD_START) / foldRange : 0
       const foldClamped = Math.min(1, Math.max(0, foldRaw))
-      flapRef.current.rotation.x = (Math.PI / 2) * (1 - easeInOut(foldClamped)) * -1
+      flapRef.current.rotation.x = -(Math.PI / 2) * (1 - easeInOut(foldClamped))
     }
   })
+
+  const invisibleTopMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial({ visible: false }),
+    [],
+  )
 
   return (
     <group position={[0, Y, 0]}>
@@ -63,7 +68,7 @@ export default function TeamBag() {
         <boxGeometry args={[WIDTH, HEIGHT, DEPTH]} />
         <primitive object={material} attach="material-0" />
         <primitive object={material} attach="material-1" />
-        <primitive object={material} attach="material-2" />
+        <primitive object={invisibleTopMaterial} attach="material-2" />
         <primitive object={material} attach="material-3" />
         <primitive object={material} attach="material-4" />
         <primitive object={material} attach="material-5" />

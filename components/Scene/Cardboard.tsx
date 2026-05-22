@@ -1,13 +1,14 @@
 'use client'
 
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 import { scrollState } from '../Scroll/scrollState'
 import { easeInOut, easeOut } from '@/lib/easings'
 
-const WIDTH = 3.6
-const HEIGHT = 4.95
+const WIDTH = 3.7
+const HEIGHT = 5.6
 const DEPTH = 0.05
 const Y = -1.0
 const FRONT_Z_REST = 0.18
@@ -19,22 +20,76 @@ const FRONT_SLIDE_END = 0.4
 const BACK_SLIDE_START = 0.36
 const BACK_SLIDE_END = 0.41
 
-function makeMaterial() {
-  return new THREE.MeshStandardMaterial({
-    color: '#b69366',
-    roughness: 0.95,
-    metalness: 0,
-    transparent: true,
-    opacity: 0,
-  })
-}
-
 export default function Cardboard() {
   const frontRef = useRef<THREE.Mesh>(null)
   const backRef = useRef<THREE.Mesh>(null)
 
-  const frontMaterial = useMemo(makeMaterial, [])
-  const backMaterial = useMemo(makeMaterial, [])
+  const [colorMap, normalMap, roughnessMap] = useTexture([
+    '/textures/Paper005_2K-JPG_Color.jpg',
+    '/textures/Paper005_2K-JPG_NormalDX.jpg',
+    '/textures/Paper005_2K-JPG_Roughness.jpg',
+  ])
+
+  const backColorMap = useMemo(() => colorMap.clone(), [colorMap])
+  const backNormalMap = useMemo(() => normalMap.clone(), [normalMap])
+  const backRoughnessMap = useMemo(() => roughnessMap.clone(), [roughnessMap])
+
+  useEffect(() => {
+    for (const tex of [colorMap, normalMap, roughnessMap]) {
+      tex.wrapS = THREE.RepeatWrapping
+      tex.wrapT = THREE.RepeatWrapping
+      tex.repeat.set(3, 3)
+      tex.needsUpdate = true
+    }
+    colorMap.colorSpace = THREE.SRGBColorSpace
+
+    for (const tex of [backColorMap, backNormalMap, backRoughnessMap]) {
+      tex.wrapS = THREE.RepeatWrapping
+      tex.wrapT = THREE.RepeatWrapping
+      tex.repeat.set(3, 3)
+      tex.rotation = Math.PI / 2
+      tex.center.set(0.5, 0.5)
+      tex.needsUpdate = true
+    }
+    backColorMap.colorSpace = THREE.SRGBColorSpace
+  }, [
+    colorMap,
+    normalMap,
+    roughnessMap,
+    backColorMap,
+    backNormalMap,
+    backRoughnessMap,
+  ])
+
+  const frontMaterial = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        map: colorMap,
+        normalMap,
+        normalScale: new THREE.Vector2(1, -1),
+        roughnessMap,
+        metalness: 0,
+        roughness: 1,
+        transparent: true,
+        opacity: 0,
+      }),
+    [colorMap, normalMap, roughnessMap],
+  )
+
+  const backMaterial = useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        map: backColorMap,
+        normalMap: backNormalMap,
+        normalScale: new THREE.Vector2(1, -1),
+        roughnessMap: backRoughnessMap,
+        metalness: 0,
+        roughness: 1,
+        transparent: true,
+        opacity: 0,
+      }),
+    [backColorMap, backNormalMap, backRoughnessMap],
+  )
 
   useFrame(() => {
     const t = scrollState.global

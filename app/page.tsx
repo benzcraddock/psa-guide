@@ -8,7 +8,7 @@ export default function Home() {
         <div className="sticky top-0 h-screen w-full">
           <Stage />
         </div>
-        <div className="h-[400vh] w-full" aria-hidden />
+        <div className="h-[1400vh] w-full" aria-hidden />
       </main>
     </ScrollProvider>
   )

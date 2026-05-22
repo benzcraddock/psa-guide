@@ -11,8 +11,8 @@ const SLEEVE_HEIGHT = 3.68
 const SLEEVE_DEPTH = 0.04
 const SLEEVE_Y = -1.0
 
-const FADE_START = 0.05
-const FADE_END = 0.08
+const FADE_START = 0.07
+const FADE_END = 0.11
 
 export default function Sleeve() {
   const meshRef = useRef<THREE.Mesh>(null)
@@ -27,8 +27,9 @@ export default function Sleeve() {
         thickness: 0.04,
         transparent: true,
         opacity: 0,
-        side: THREE.DoubleSide,
+        side: THREE.FrontSide,
         depthWrite: false,
+        dithering: true,
       }),
     [],
   )
@@ -43,11 +44,11 @@ export default function Sleeve() {
     const fadeRange = FADE_END - FADE_START
     const raw = fadeRange > 0 ? (t - FADE_START) / fadeRange : 0
     const clamped = Math.min(1, Math.max(0, raw))
-    sleeveMaterial.opacity = easeInOut(clamped) * 0.7
+    sleeveMaterial.opacity = easeInOut(clamped) * 0.5
   })
 
   return (
-    <mesh ref={meshRef} position={[0, SLEEVE_Y, 0]}>
+    <mesh ref={meshRef} position={[0, SLEEVE_Y, 0]} renderOrder={1}>
       <boxGeometry args={[SLEEVE_WIDTH, SLEEVE_HEIGHT, SLEEVE_DEPTH]} />
       <primitive object={sleeveMaterial} attach="material-0" />
       <primitive object={sleeveMaterial} attach="material-1" />

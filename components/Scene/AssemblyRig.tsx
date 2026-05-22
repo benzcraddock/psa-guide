@@ -9,7 +9,6 @@ import Card from './Card'
 import Cardboard from './Cardboard'
 import SemiRigid from './SemiRigid'
 import Sleeve from './Sleeve'
-import TeamBag from './TeamBag'
 
 const ROTATE_START = 0.35
 const ROTATE_END = 0.45
@@ -30,7 +29,6 @@ export default function AssemblyRig() {
   return (
     <group ref={ref}>
       <Cardboard />
-      <TeamBag />
       <SemiRigid />
       <Sleeve />
       <Card />
