@@ -48,7 +48,7 @@ export default function Sleeve() {
   })
 
   return (
-    <mesh ref={meshRef} position={[0, SLEEVE_Y, 0]} renderOrder={1}>
+    <mesh ref={meshRef} position={[0, SLEEVE_Y, 0]} renderOrder={11}>
       <boxGeometry args={[SLEEVE_WIDTH, SLEEVE_HEIGHT, SLEEVE_DEPTH]} />
       <primitive object={sleeveMaterial} attach="material-0" />
       <primitive object={sleeveMaterial} attach="material-1" />

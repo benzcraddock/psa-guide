@@ -60,6 +60,13 @@ export const waypoints: CameraWaypoint[] = [
   },
   {
     scrollAt: 0.45,
+    position: [0, -0.05, 9.0],
+    lookAt: [0, -0.8, 0],
+    fov: 35,
+    easing: easeInOut,
+  },
+  {
+    scrollAt: 0.50,
     position: [0, 0, 9.0],
     lookAt: [0, -0.8, 0],
     fov: 35,

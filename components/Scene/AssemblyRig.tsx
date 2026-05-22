@@ -10,9 +10,10 @@ import Cardboard from './Cardboard'
 import RubberBands from './RubberBands'
 import SemiRigid from './SemiRigid'
 import Sleeve from './Sleeve'
+import Waterfall from './Waterfall'
 
 const ROTATE_START = 0.35
-const ROTATE_END = 0.45
+const ROTATE_END = 0.50
 const ROTATE_MAX = Math.PI / 3.5
 
 const MOUSE_TILT_Y = 0.09
@@ -51,6 +52,7 @@ export default function AssemblyRig() {
     <group ref={ref}>
       <Cardboard />
       <RubberBands />
+      <Waterfall />
       <SemiRigid />
       <Sleeve />
       <Card />

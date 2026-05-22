@@ -43,8 +43,19 @@ export const beats: Beat[] = [
     },
   },
   {
-    id: 'cardboard',
+    id: 'waterfall',
     scrollStart: 0.35,
+    scrollEnd: 0.40,
+    mode: '3d',
+    copy: {
+      num: '03.5',
+      title: 'Stack the rest.',
+      body: 'Same care, every card. Multiple submissions stack together, each one sleeved and saved.',
+    },
+  },
+  {
+    id: 'cardboard',
+    scrollStart: 0.40,
     scrollEnd: 0.45,
     mode: '3d',
     copy: {
@@ -55,8 +66,8 @@ export const beats: Beat[] = [
   },
   {
     id: 'rubber-bands',
-    scrollStart: 0.41,
-    scrollEnd: 0.47,
+    scrollStart: 0.45,
+    scrollEnd: 0.50,
     mode: '3d',
     copy: {
       num: '04.5',

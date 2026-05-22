@@ -49,26 +49,33 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 **Copy:** "Into the semi-rigid. Card-Saver I or equivalent. Snug, never forced."
 **Scroll range:** 15–25%
 
+### Beat 03.5 — Stack the rest
+**Technique:** 3D
+**Camera:** Camera holds wide on the Charizard-in-saver. Four additional cards (Pikachu, Gengar, Mew, Umbreon), each in its own penny sleeve and card-saver, drop in one at a time from above and settle into a depth-stack behind the Charizard. Cards stay face-up. Each card descends with subtle horizontal sway and a damped spring settle. Stack composes in z-depth: Pikachu closest to Charizard, Umbreon deepest. Brief hold at end of beat before cardboard arrives.
+**Physics:** Each card drops from y=+4 to its rest position, easeOut over roughly 0.015 scroll units. Slight sin-wave horizontal sway during descent (amplitude ~0.06, fades out as the card settles).
+**Copy:** "Stack the rest. Same care, every card. Multiple submissions stack together, each one sleeved and saved."
+**Scroll range:** 35–40%
+
 ### Beat 04 — Cardboard sandwich
 **Technique:** 3D
-**Camera:** Two cardboard pieces float in from off-screen. Card assembly settles between them. Camera circles slowly to show the sandwich structure. Final beat: assembly rotates slowly, locked together as one unit.
+**Camera:** Two cardboard pieces float in from off-screen. The full 5-card stack settles between them. Camera circles slowly to show the sandwich structure. Back piece sits at z=-0.24 to clear the deepest card's saver.
 **Physics:** Cardboard pieces drift in with weight. A subtle "click" feeling on full assembly.
 **Copy:** "Cardboard sandwich. Two pieces, slightly larger than the card. Protection from every angle."
-**Scroll range:** 35–45%
+**Scroll range:** 40–45%
 
 ### Beat 04.5 — Bind with rubber bands
 **Technique:** 3D
 **Camera:** Continues from Beat 04's slow Y-axis rotation of the assembly. Three black rubber bands fly in from off-screen, oversized and loose. Each band stretches into position at roughly 20%, 45%, and 70% of card height. Bands contract via spring to grip the cardboard tightly. Slight compression dent appears on the cardboard surface where each band sits. Assembly rotation completes by end of beat, revealing the fully bound unit.
 **Physics:** Rubber bands stretch and settle via damped spring. No snap. Bands shrink smoothly and bind. Cardboard surface compresses slightly inward (roughly 1%) where each band sits, on a soft falloff. The three bands sit at slightly varying angles (1-3° each, alternating direction) to avoid robotic parallel alignment.
 **Copy:** "Bind with rubber bands. Three bands, perpendicular to the card. Compression locks the sandwich."
-**Scroll range:** 41–47%
+**Scroll range:** 45–50%
 
 ### Beat T — The Pull-Back (transition)
 **Technique:** 3D → Video match cut
 **Camera:** Camera dollies *way* back from the sandwiched assembly. The sandwich sits on what is revealed to be a real wooden tabletop. A hand reaches in from frame-right. At the exact moment the hand enters, we cut to a Higgsfield-generated video clip where that exact frame is the first frame.
 **Build note:** The trickiest beat. The 3D card must occupy the same screen position as the video card on the cut. Export a still from the 3D scene at the moment of transition; that becomes the reference frame for Higgsfield's generation.
 **Fallback:** If the match cut fails, use a 200ms cross-dissolve. Less impressive but always works.
-**Scroll range:** 45–50%
+**Scroll range:** 50–55%
 
 ### Beat 05 — Print your submission form
 **Technique:** Video (Higgsfield / Seedance 2.0)
@@ -77,7 +84,7 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 > Macro close-up shot of a modern office printer pushing out a single sheet of white paper. The paper has visible black text reading "PSA SUBMISSION FORM" at the top. Soft natural lighting, shallow depth of field, clean white surroundings. A human hand reaches in from frame-right and picks up the paper. Shot on Arri Alexa, 50mm lens, cinematic 24fps.
 
 **Copy:** "Print your submission form. The paperwork makes it real."
-**Scroll range:** 50–58%
+**Scroll range:** 55–62%
 
 ### Beat 06 — Assemble the box
 **Technique:** Video (Higgsfield)
@@ -86,7 +93,7 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 > Overhead macro shot of two hands assembling a flat cardboard shipping box on a clean white surface. The box folds up into 3D shape. Soft overhead lighting, top-down camera angle, hands move with precision. Shot on Arri Alexa, 35mm lens, cinematic, 24fps.
 
 **Copy:** "Assemble the box. Plain cardboard. No reused packaging — fresh structure only."
-**Scroll range:** 58–66%
+**Scroll range:** 62–69%
 
 ### Beat 07 — Include your submission form
 **Technique:** Video (Higgsfield)
@@ -95,7 +102,7 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 > Close-up shot looking into an open cardboard shipping box. A hand places a folded white paper form inside, next to a wrapped trading card protected in bubble wrap. Soft natural light, shallow depth of field, clean white background. Camera slowly pushes in. Shot on Arri Alexa, 50mm lens, cinematic.
 
 **Copy:** "Include your submission form. Inside the box, on top. Multiple submissions? Bundle each separately."
-**Scroll range:** 66–74%
+**Scroll range:** 69–76%
 
 ### Beat 08 — Seal the box (HERO)
 **Technique:** Video (Higgsfield)
@@ -104,7 +111,7 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 > Extreme macro close-up of packing tape being pulled across the seam of a white cardboard shipping box. The tape is transparent and glossy. A hand pulls a dispenser smoothly across the top. Hands then press the tape down firmly. Soft natural lighting, shallow depth of field, cinematic 24fps, clean white background. Shot on Arri Alexa, 100mm macro lens.
 
 **Copy:** "Seal the box. Packing tape only. No painter's tape, no scotch, no reused tape."
-**Scroll range:** 74–82%
+**Scroll range:** 76–83%
 
 ### Beat 09 — Apply your tracking label (HERO — the scissors moment)
 **Technique:** Video (Higgsfield) — two shots edited together
@@ -120,7 +127,7 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 **Production note:** Highest-risk shot in the project. Scissors mid-cut is exactly the shot AI video models flub. If A fails after ~15 attempts, fall back to a stop-motion-feel reveal where the cut happens off-screen and we just see the result on the surface.
 
 **Copy:** "Apply your tracking label. Directly on the box. Clear tape over it, barcode fully visible. Skip this and you skip the queue."
-**Scroll range:** 82–90%
+**Scroll range:** 83–90%
 
 ### Beat 10 — Hand it off (HERO — the closer)
 **Technique:** Video (Higgsfield)
@@ -130,14 +137,14 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 > Cinematic close-up shot of two hands holding a sealed white cardboard shipping box with a barcode label visible. The hands extend the box forward. A second pair of hands wearing a navy blue uniform sleeve reaches in from frame-right and takes the box. The camera rack-focuses to the uniformed person placing the box on a counter. Soft warm lighting, shallow depth of field, cinematic 24fps, slight handheld movement. Shot on Arri Alexa, 35mm lens.
 
 **Copy:** "Hand it off. PSA addresses below, by item type and carrier. Your card is in the system."
-**Scroll range:** 90–96%
+**Scroll range:** 90–95%
 
 ### Beat 11 — The Loop (closer + return)
 **Technique:** Video → 3D match cut
 **Shot:** Box on the counter behind the courier. Quick fade to white. Inside the white, a PSA-graded slab materializes briefly — the Mega Charizard X now encased in clear plastic with the PSA label across the top. Holds for one beat. The slab dissolves back into the bare card hovering in the void (matches the opening shot of Beat 00).
 **Implementation:** As scroll passes 100%, the experience visually loops back to Beat 00. User can scroll up to revisit, or just watch the cycle complete.
 **Copy:** Optional. Could be one line: "Graded. Returned. Forever protected." Or pure cinematic — no text.
-**Scroll range:** 96–100%
+**Scroll range:** 95–100%
 
 ---
 
@@ -176,6 +183,7 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | Asset | Geometry | Material | Notes |
 |---|---|---|---|
 | Charizard card | `RoundedBox` (low poly) | Custom `shaderMaterial` (holo) | Front: SIR JPEG. Back: standard Pokémon back. |
+| Waterfall cards ×4 | BoxGeometry, same dimensions as Charizard | `meshStandardMaterial` (no holo) with own penny sleeve + card-saver per card | Pikachu, Gengar, Mew, Umbreon. Stack behind Charizard at z=-0.04, -0.08, -0.12, -0.16. Drop in sequence during Beat 03.5. |
 | Penny sleeve | Box with one open edge | Transparent PBR | Slight texture/grain on plastic |
 | Semi-rigid | Thicker box, transparent | Stiffer transparent PBR | Visible thickness |
 | Team bag | Plane + flap (separate mesh) | Transparent PBR with flap | Animated unfold |
@@ -193,16 +201,17 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | 0–5 | 00 — title / cold open | 3D |
 | 5–21 | 01 — sleeve | 3D |
 | 21–35 | 02 — semi-rigid | 3D |
-| 35–45 | 04 — cardboard | 3D |
-| 41–47 | 04.5 — rubber bands | 3D |
-| 45–50 | T — pull-back transition | 3D → Video |
-| 50–58 | 05 — form print | Video |
-| 58–66 | 06 — box assembly | Video |
-| 66–74 | 07 — form into box | Video |
-| 74–82 | 08 — seal | Video |
-| 82–90 | 09 — label cut + apply | Video |
-| 90–96 | 10 — handoff | Video |
-| 96–100 | 11 — loop / slab → bare card | Video → 3D |
+| 35–40 | 03.5 — stack the rest | 3D |
+| 40–45 | 04 — cardboard | 3D |
+| 45–50 | 04.5 — rubber bands | 3D |
+| 50–55 | T — pull-back transition | 3D → Video |
+| 55–62 | 05 — form print | Video |
+| 62–69 | 06 — box assembly | Video |
+| 69–76 | 07 — form into box | Video |
+| 76–83 | 08 — seal | Video |
+| 83–90 | 09 — label cut + apply | Video |
+| 90–95 | 10 — handoff | Video |
+| 95–100 | 11 — loop / slab → bare card | Video → 3D |
 
 ---
 
@@ -213,6 +222,7 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | 00 | "How to ship a card to PSA." / "An immersive walkthrough." |
 | 01 | "Sleeve your card. Penny sleeve, opening facing up. Slide slowly — the holo deserves it." |
 | 02 | "Into the semi-rigid. Card-Saver I or equivalent. Snug, never forced." |
+| 03.5 | "Stack the rest. Same care, every card. Multiple submissions stack together, each one sleeved and saved." |
 | 04 | "Cardboard sandwich. Two pieces, slightly larger than the card. Protection from every angle." |
 | 04.5 | "Bind with rubber bands. Three bands, perpendicular to the card. Compression locks the sandwich." |
 | 05 | "Print your submission form. The paperwork makes it real." |

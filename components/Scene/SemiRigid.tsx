@@ -30,12 +30,10 @@ export default function SemiRigid() {
     () =>
       new THREE.MeshPhysicalMaterial({
         color: '#ffffff',
-        transmission: 0.92,
-        roughness: 0.05,
+        transmission: 0.88,
+        roughness: 0.35,
         ior: 1.5,
         thickness: 0.12,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.04,
         transparent: true,
         opacity: 0,
         side: THREE.FrontSide,
@@ -77,7 +75,7 @@ export default function SemiRigid() {
 
   return (
     <group ref={groupRef} position={[0, Y_ABOVE, 0]}>
-      <mesh renderOrder={2}>
+      <mesh renderOrder={12}>
         <boxGeometry args={[WIDTH, HEIGHT, DEPTH]} />
         <primitive object={material} attach="material-0" />
         <primitive object={material} attach="material-1" />
@@ -87,7 +85,7 @@ export default function SemiRigid() {
         <primitive object={material} attach="material-5" />
       </mesh>
       <group ref={tabRef} position={[0, HEIGHT / 2, 0]}>
-        <mesh position={[0, TAB_HEIGHT / 2, 0]} renderOrder={2}>
+        <mesh position={[0, TAB_HEIGHT / 2, 0]} renderOrder={12}>
           <boxGeometry args={[WIDTH, TAB_HEIGHT, DEPTH]} />
           <primitive object={material} attach="material-0" />
           <primitive object={material} attach="material-1" />

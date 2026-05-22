@@ -24,10 +24,10 @@ const LOOSE_SCALE = 1.2
 
 const FLY_IN_OFFSET = 6.0
 
-const FLY_IN_START = 0.41
-const FLY_IN_END = 0.45
-const GRIP_START = 0.44
-const GRIP_END = 0.47
+const FLY_IN_START = 0.45
+const FLY_IN_END = 0.49
+const GRIP_START = 0.48
+const GRIP_END = 0.50
 
 const TUBULAR_SEGMENTS = 192
 

@@ -85,6 +85,8 @@ export default function Card() {
   )
 
   const backMaterial = useMemo(() => {
+    backTexture.colorSpace = THREE.SRGBColorSpace
+    backTexture.needsUpdate = true
     const mat = new THREE.MeshStandardMaterial({
       map: backTexture,
       roughness: 0.6,
