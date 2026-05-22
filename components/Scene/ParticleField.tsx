@@ -4,7 +4,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const PARTICLE_COUNT = 250
+const PARTICLE_COUNT = 450
 const FIELD_RADIUS_X = 8
 const FIELD_RADIUS_Y = 7
 const FIELD_RADIUS_Z = 8
@@ -12,8 +12,8 @@ const CLEAR_RADIUS = 2.5
 
 const DRIFT_SPEED = 0.012
 
-const MOUSE_SHIFT_X = 0.45
-const MOUSE_SHIFT_Y = 0.3
+const MOUSE_SHIFT_X = 0.2
+const MOUSE_SHIFT_Y = 0.15
 const MOUSE_LERP = 0.04
 
 export default function ParticleField() {
