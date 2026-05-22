@@ -7,6 +7,7 @@ interface WaterfallEntry {
   dropStart: number
   dropEnd: number
   zOffset: number
+  restY: number
   side: 'left' | 'right'
   renderOrderBase: number
 }
@@ -17,6 +18,7 @@ const WATERFALL_CARDS: WaterfallEntry[] = [
     dropStart: 0.35,
     dropEnd: 0.362,
     zOffset: -0.04,
+    restY: -0.92,
     side: 'left',
     renderOrderBase: 8,
   },
@@ -25,6 +27,7 @@ const WATERFALL_CARDS: WaterfallEntry[] = [
     dropStart: 0.362,
     dropEnd: 0.374,
     zOffset: -0.08,
+    restY: -0.84,
     side: 'right',
     renderOrderBase: 6,
   },
@@ -33,6 +36,7 @@ const WATERFALL_CARDS: WaterfallEntry[] = [
     dropStart: 0.374,
     dropEnd: 0.386,
     zOffset: -0.12,
+    restY: -0.76,
     side: 'left',
     renderOrderBase: 4,
   },
@@ -41,6 +45,7 @@ const WATERFALL_CARDS: WaterfallEntry[] = [
     dropStart: 0.386,
     dropEnd: 0.398,
     zOffset: -0.16,
+    restY: -0.68,
     side: 'right',
     renderOrderBase: 2,
   },
@@ -56,6 +61,7 @@ export default function Waterfall() {
           dropStart={card.dropStart}
           dropEnd={card.dropEnd}
           zOffset={card.zOffset}
+          restY={card.restY}
           side={card.side}
           renderOrderBase={card.renderOrderBase}
         />

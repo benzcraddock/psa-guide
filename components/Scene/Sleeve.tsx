@@ -44,7 +44,7 @@ export default function Sleeve() {
     const fadeRange = FADE_END - FADE_START
     const raw = fadeRange > 0 ? (t - FADE_START) / fadeRange : 0
     const clamped = Math.min(1, Math.max(0, raw))
-    sleeveMaterial.opacity = easeInOut(clamped) * 0.5
+    sleeveMaterial.opacity = easeInOut(clamped) * 0.3
   })
 
   return (

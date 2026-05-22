@@ -55,7 +55,9 @@ const HoloMaterialImpl = shaderMaterial(
       vec3 lightDir = normalize(uLightDir);
       vec3 viewDir = normalize(vViewPosition);
 
-      vec3 baseColor = texture2D(uTexture, vUv).rgb;
+      vec3 baseColor = pow(texture2D(uTexture, vUv).rgb, vec3(0.92));
+      float lum = dot(baseColor, vec3(0.299, 0.587, 0.114));
+      baseColor = mix(vec3(lum), baseColor, 1.12);
 
       float luminance = dot(baseColor, vec3(0.299, 0.587, 0.114));
       float verticalGradient = smoothstep(0.1, 0.85, vUv.y);

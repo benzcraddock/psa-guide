@@ -54,7 +54,7 @@ export default function SemiRigid() {
     const fadeRange = FADE_END - FADE_START
     const fadeRaw = fadeRange > 0 ? (t - FADE_START) / fadeRange : 0
     const fadeClamped = Math.min(1, Math.max(0, fadeRaw))
-    material.opacity = easeInOut(fadeClamped) * 0.5
+    material.opacity = easeInOut(fadeClamped) * 0.3
 
     if (groupRef.current) {
       const slideRange = SLIDE_END - SLIDE_START

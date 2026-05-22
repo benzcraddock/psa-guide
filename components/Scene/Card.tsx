@@ -39,15 +39,19 @@ export default function Card() {
     '/textures/noise.png',
   ])
 
-  useEffect(() => {
+  const preparedFrontTexture = useMemo(() => {
     frontTexture.colorSpace = THREE.SRGBColorSpace
-    backTexture.colorSpace = THREE.SRGBColorSpace
+    frontTexture.needsUpdate = true
+    return frontTexture
+  }, [frontTexture])
+
+  useEffect(() => {
     noiseTexture.wrapS = THREE.RepeatWrapping
     noiseTexture.wrapT = THREE.RepeatWrapping
     noiseTexture.colorSpace = THREE.NoColorSpace
     noiseTexture.magFilter = THREE.LinearFilter
     noiseTexture.minFilter = THREE.LinearMipmapLinearFilter
-  }, [frontTexture, backTexture, noiseTexture])
+  }, [noiseTexture])
 
   useFrame(() => {
     const t = scrollState.global
@@ -120,7 +124,8 @@ export default function Card() {
           <holoMaterial
             ref={holoRef}
             attach="material-4"
-            uTexture={frontTexture}
+            toneMapped={false}
+            uTexture={preparedFrontTexture}
             uNoiseTexture={noiseTexture}
             uLightDir={LIGHT_DIR}
           />

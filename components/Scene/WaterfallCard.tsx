@@ -20,7 +20,7 @@ const SAVER_HEIGHT = 4.3
 const SAVER_DEPTH = 0.09
 const SAVER_TAB_HEIGHT = 0.55
 
-const REST_Y = -1.0
+const SETTLE_Y = -1.0
 
 const ROTATION_MAX = Math.PI / 15
 
@@ -48,6 +48,7 @@ interface WaterfallCardProps {
   dropStart: number
   dropEnd: number
   zOffset: number
+  restY: number
   side: 'left' | 'right'
   renderOrderBase: number
 }
@@ -57,6 +58,7 @@ export default function WaterfallCard({
   dropStart,
   dropEnd,
   zOffset,
+  restY,
   side,
   renderOrderBase,
 }: WaterfallCardProps) {
@@ -78,34 +80,35 @@ export default function WaterfallCard({
   const path = useMemo(() => {
     return new THREE.CatmullRomCurve3(
       [
-        new THREE.Vector3(sideSign * 6, 0, 0),
-        new THREE.Vector3(sideSign * 4, 0, 1.5),
-        new THREE.Vector3(sideSign * 3, 0, 2),
-        new THREE.Vector3(sideSign * 1.5, -0.6, 0.5),
-        new THREE.Vector3(0, REST_Y, zOffset),
+        new THREE.Vector3(sideSign * 6, 0, zOffset),
+        new THREE.Vector3(sideSign * 4, restY * 0.4, zOffset),
+        new THREE.Vector3(sideSign * 2, restY * 0.85, zOffset),
+        new THREE.Vector3(0, restY, zOffset),
+        new THREE.Vector3(0, SETTLE_Y, zOffset),
       ],
       false,
       'catmullrom',
       0.5,
     )
-  }, [sideSign, zOffset])
+  }, [sideSign, zOffset, restY])
 
   const edgeMaterial = useMemo(
     () => new THREE.MeshStandardMaterial({ color: '#0a0a0a', roughness: 0.9 }),
     [],
   )
 
-  const cardFrontMaterial = useMemo(
-    () =>
-      attachCornerDiscard(
-        new THREE.MeshStandardMaterial({
-          map: frontTexture,
-          roughness: 0.5,
-          metalness: 0,
-        }),
-      ),
-    [frontTexture],
-  )
+  const cardFrontMaterial = useMemo(() => {
+    frontTexture.colorSpace = THREE.SRGBColorSpace
+    frontTexture.needsUpdate = true
+    return attachCornerDiscard(
+      new THREE.MeshStandardMaterial({
+        map: frontTexture,
+        roughness: 0.5,
+        metalness: 0,
+        toneMapped: false,
+      }),
+    )
+  }, [frontTexture])
 
   const cardBackMaterial = useMemo(() => {
     backTexture.colorSpace = THREE.SRGBColorSpace
@@ -170,7 +173,7 @@ export default function WaterfallCard({
   })
 
   return (
-    <group ref={groupRef} position={[sideSign * 6, 0, 0]}>
+    <group ref={groupRef} position={[sideSign * 6, 0, zOffset]}>
       <mesh>
         <boxGeometry args={[CARD_WIDTH, CARD_HEIGHT, CARD_DEPTH]} />
         <primitive object={edgeMaterial} attach="material-0" />
