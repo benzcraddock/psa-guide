@@ -46,3 +46,12 @@ CLAUDE_CODE_KICKOFF.md
 
 # Claude Code per-user config
 .claude/settings.local.json
+
+# Local reference materials (not shipped — see ARCHITECTURE.md)
+/reference/
+
+# 3D-editor texture sidecars (we only ship the JPGs/PNGs)
+public/textures/*.blend
+public/textures/*.mtlx
+public/textures/*.tres
+public/textures/*.usdc
