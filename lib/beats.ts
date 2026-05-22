@@ -23,7 +23,7 @@ export const beats: Beat[] = [
   {
     id: 'sleeve',
     scrollStart: 0.05,
-    scrollEnd: 0.15,
+    scrollEnd: 0.21,
     mode: '3d',
     copy: {
       num: '01',
@@ -33,24 +33,13 @@ export const beats: Beat[] = [
   },
   {
     id: 'semi-rigid',
-    scrollStart: 0.15,
-    scrollEnd: 0.25,
+    scrollStart: 0.21,
+    scrollEnd: 0.35,
     mode: '3d',
     copy: {
       num: '02',
       title: 'Into the semi-rigid.',
       body: 'Card-Saver I or equivalent. Snug, never forced.',
-    },
-  },
-  {
-    id: 'team-bag',
-    scrollStart: 0.25,
-    scrollEnd: 0.35,
-    mode: '3d',
-    copy: {
-      num: '03',
-      title: 'Team bag it.',
-      body: 'Optional, but recommended. Moisture is the enemy.',
     },
   },
   {
@@ -62,6 +51,17 @@ export const beats: Beat[] = [
       num: '04',
       title: 'Cardboard sandwich.',
       body: 'Two pieces, slightly larger than the card. Protection from every angle.',
+    },
+  },
+  {
+    id: 'rubber-bands',
+    scrollStart: 0.41,
+    scrollEnd: 0.47,
+    mode: '3d',
+    copy: {
+      num: '04.5',
+      title: 'Bind with rubber bands.',
+      body: 'Three bands, perpendicular to the card. Compression locks the sandwich.',
     },
   },
 ]

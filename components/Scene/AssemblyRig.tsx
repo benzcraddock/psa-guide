@@ -7,6 +7,7 @@ import { scrollState } from '../Scroll/scrollState'
 import { easeInOut } from '@/lib/easings'
 import Card from './Card'
 import Cardboard from './Cardboard'
+import RubberBands from './RubberBands'
 import SemiRigid from './SemiRigid'
 import Sleeve from './Sleeve'
 
@@ -29,6 +30,7 @@ export default function AssemblyRig() {
   return (
     <group ref={ref}>
       <Cardboard />
+      <RubberBands />
       <SemiRigid />
       <Sleeve />
       <Card />

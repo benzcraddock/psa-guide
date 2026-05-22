@@ -49,19 +49,19 @@ Match cut from the box leaving frame to a slabbed/graded PSA case briefly catchi
 **Copy:** "Into the semi-rigid. Card-Saver I or equivalent. Snug, never forced."
 **Scroll range:** 15–25%
 
-### Beat 03 — Team bag
-**Technique:** 3D
-**Camera:** Top-down view. Card-in-saver lays flat on dark surface. Team bag unfolds open from the top. Saver slides in. Bag flap folds over with a soft paper-like motion. Camera tilts back up to a 3/4 view as the flap seals.
-**Physics:** Bag flap folds with a soft, paper-like animation. Slight flutter.
-**Copy:** "Team bag it. Optional, but recommended. Moisture is the enemy."
-**Scroll range:** 25–35%
-
 ### Beat 04 — Cardboard sandwich
 **Technique:** 3D
 **Camera:** Two cardboard pieces float in from off-screen. Card assembly settles between them. Camera circles slowly to show the sandwich structure. Final beat: assembly rotates slowly, locked together as one unit.
 **Physics:** Cardboard pieces drift in with weight. A subtle "click" feeling on full assembly.
 **Copy:** "Cardboard sandwich. Two pieces, slightly larger than the card. Protection from every angle."
 **Scroll range:** 35–45%
+
+### Beat 04.5 — Bind with rubber bands
+**Technique:** 3D
+**Camera:** Continues from Beat 04's slow Y-axis rotation of the assembly. Three black rubber bands fly in from off-screen, oversized and loose. Each band stretches into position at roughly 20%, 45%, and 70% of card height. Bands contract via spring to grip the cardboard tightly. Slight compression dent appears on the cardboard surface where each band sits. Assembly rotation completes by end of beat, revealing the fully bound unit.
+**Physics:** Rubber bands stretch and settle via damped spring. No snap. Bands shrink smoothly and bind. Cardboard surface compresses slightly inward (roughly 1%) where each band sits, on a soft falloff. The three bands sit at slightly varying angles (1-3° each, alternating direction) to avoid robotic parallel alignment.
+**Copy:** "Bind with rubber bands. Three bands, perpendicular to the card. Compression locks the sandwich."
+**Scroll range:** 41–47%
 
 ### Beat T — The Pull-Back (transition)
 **Technique:** 3D → Video match cut
@@ -180,6 +180,7 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | Semi-rigid | Thicker box, transparent | Stiffer transparent PBR | Visible thickness |
 | Team bag | Plane + flap (separate mesh) | Transparent PBR with flap | Animated unfold |
 | Cardboard ×2 | Plane with thickness | Cardboard texture | Slightly oversized vs card |
+| Rubber bands ×3 | `TorusGeometry` stretched into rounded-rectangle profile | `meshStandardMaterial` color #1a1a1a, roughness 0.85, metalness 0 | Three bands at 20%, 45%, and 70% of card height, slightly angled 1-3° in alternating directions for natural look. Animate stretch-to-fit via spring. Compress cardboard surface slightly where each band sits. |
 | Studio environment | HDRI + 1 spotlight | N/A | Dark, dramatic |
 | PSA slab (closer only) | RoundedBox with frame | Clear PBR + plastic | Only appears in Beat 11 |
 
@@ -190,10 +191,10 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | Scroll % | Beat | Mode |
 |---|---|---|
 | 0–5 | 00 — title / cold open | 3D |
-| 5–15 | 01 — sleeve | 3D |
-| 15–25 | 02 — semi-rigid | 3D |
-| 25–35 | 03 — team bag | 3D |
+| 5–21 | 01 — sleeve | 3D |
+| 21–35 | 02 — semi-rigid | 3D |
 | 35–45 | 04 — cardboard | 3D |
+| 41–47 | 04.5 — rubber bands | 3D |
 | 45–50 | T — pull-back transition | 3D → Video |
 | 50–58 | 05 — form print | Video |
 | 58–66 | 06 — box assembly | Video |
@@ -212,8 +213,8 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | 00 | "How to ship a card to PSA." / "An immersive walkthrough." |
 | 01 | "Sleeve your card. Penny sleeve, opening facing up. Slide slowly — the holo deserves it." |
 | 02 | "Into the semi-rigid. Card-Saver I or equivalent. Snug, never forced." |
-| 03 | "Team bag it. Optional, but recommended. Moisture is the enemy." |
 | 04 | "Cardboard sandwich. Two pieces, slightly larger than the card. Protection from every angle." |
+| 04.5 | "Bind with rubber bands. Three bands, perpendicular to the card. Compression locks the sandwich." |
 | 05 | "Print your submission form. The paperwork makes it real." |
 | 06 | "Assemble the box. Plain cardboard. No reused packaging — fresh structure only." |
 | 07 | "Include your submission form. Inside the box, on top. Multiple submissions? Bundle each separately." |
@@ -223,3 +224,9 @@ All assets coded directly in R3F. Tripo / Meshy held in reserve for any hero det
 | 11 | "Graded. Returned. Forever protected." (optional) |
 
 **Style note:** No em dashes anywhere. Hyphens or sentence breaks only.
+
+---
+
+## Reference images
+
+- Rubber-banded cardboard sandwich: `/reference/cardboard-sandwich-bands.png` — real-life photo showing three thick black rubber bands wrapped around a cardboard-protected card in a clear sleeve, hands holding it.
