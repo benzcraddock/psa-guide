@@ -23,6 +23,8 @@ const CARD_REST_Y = -1.0
 
 const SWEEP_START = 0.03
 const SWEEP_END = 0.10
+// Fraction of the sweep duration spent easing the highlight back to rest.
+const SWEEP_SETTLE = 0.9
 
 export default function Card() {
   const groupRef = useRef<THREE.Group>(null)
@@ -69,16 +71,29 @@ export default function Card() {
     if (holoRef.current) {
       const sweepRange = SWEEP_END - SWEEP_START
       const sweepRaw = sweepRange > 0 ? (t - SWEEP_START) / sweepRange : 0
-      const inSweep = sweepRaw >= 0 && sweepRaw <= 1
       const offset = holoRef.current.uniforms.uSweepOffset.value as THREE.Vector2
-      if (inSweep) {
+      const intensity = holoRef.current.uniforms.uShimmerIntensity
+
+      if (sweepRaw <= 0) {
+        // Before the sweep: resting holo at spec-default position.
+        offset.x = 0
+        offset.y = 0
+        intensity.value = 1.0
+      } else if (sweepRaw <= 1) {
+        // Traveling sweep across the card during the flip.
         offset.x = -0.8 + 1.6 * sweepRaw
         offset.y = 0.5 - 1.0 * sweepRaw
-        holoRef.current.uniforms.uShimmerIntensity.value = 2.2
+        intensity.value = 2.2
+      } else if (sweepRaw <= 1 + SWEEP_SETTLE) {
+        // Settle: glide the highlight back to rest and dim, no snap.
+        const s = easeInOut((sweepRaw - 1) / SWEEP_SETTLE)
+        offset.x = 0.8 * (1 - s)
+        offset.y = -0.5 * (1 - s)
+        intensity.value = 2.2 + (1.0 - 2.2) * s
       } else {
         offset.x = 0
         offset.y = 0
-        holoRef.current.uniforms.uShimmerIntensity.value = 1.0
+        intensity.value = 1.0
       }
     }
   })

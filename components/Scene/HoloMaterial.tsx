@@ -12,8 +12,8 @@ const HoloMaterialImpl = shaderMaterial(
     uSweepOffset: new THREE.Vector2(0, 0),
     uShimmerIntensity: 1.0,
     uGrainDensity: 1.0,
-    uMatteFalloff: 1.5,
-    uWarmTint: 0.3,
+    uMatteFalloff: 1.05,
+    uWarmTint: 0.6,
     uTime: 0,
   },
   /* glsl */ `
@@ -60,12 +60,12 @@ const HoloMaterialImpl = shaderMaterial(
       baseColor = mix(vec3(lum), baseColor, 1.12);
 
       float luminance = dot(baseColor, vec3(0.299, 0.587, 0.114));
-      float verticalGradient = smoothstep(0.1, 0.85, vUv.y);
-      float foilMask = clamp(luminance * verticalGradient * 1.4, 0.0, 1.0);
+      float verticalGradient = smoothstep(0.0, 0.55, vUv.y);
+      float foilMask = clamp((luminance + 0.18) * verticalGradient * 1.7, 0.0, 1.0);
 
       vec2 lightUv = vec2(0.5) + lightDir.xy * 0.4 + uSweepOffset;
       float litZoneDist = distance(vUv, lightUv);
-      float litZone = pow(1.0 - smoothstep(0.0, 0.5, litZoneDist), uMatteFalloff);
+      float litZone = pow(1.0 - smoothstep(0.0, 0.9, litZoneDist), uMatteFalloff);
 
       vec2 noiseUv = vUv * 8.0 + normal.xy * 0.05;
       float grain = texture2D(uNoiseTexture, noiseUv).r;
@@ -86,13 +86,13 @@ const HoloMaterialImpl = shaderMaterial(
       );
 
       vec3 finalColor = baseColor;
-      finalColor += sheenColor * litZone * foilMask * 0.3 * uShimmerIntensity;
+      finalColor += sheenColor * litZone * foilMask * 0.29 * uShimmerIntensity;
       finalColor += (hueBand - vec3(0.5)) * litZone * foilMask * 0.15 * uShimmerIntensity;
-      finalColor += sheenColor * grain * litZone * foilMask * 0.4 * uShimmerIntensity * uGrainDensity;
+      finalColor += sheenColor * grain * litZone * foilMask * 0.38 * uShimmerIntensity * uGrainDensity;
 
       float fresnel = 1.0 - max(0.0, dot(normal, viewDir));
       fresnel = pow(fresnel, 2.5);
-      finalColor += vec3(0.7, 0.85, 0.95) * fresnel * 0.4 * uShimmerIntensity;
+      finalColor += vec3(0.95, 0.86, 0.74) * fresnel * 0.33 * uShimmerIntensity;
 
       gl_FragColor = vec4(finalColor, 1.0);
     }
