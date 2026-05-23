@@ -10,14 +10,18 @@ const Y_CENTER = -1.0
 const STACK_HEIGHT = 5.6
 
 const CARDBOARD_HALF_WIDTH = 1.85
-const CARDBOARD_FRONT_Z = 0.205
+// Outer surfaces of the two cardboard panels (see Cardboard.tsx). The sandwich
+// is not centered on z=0, so the band must wrap asymmetrically to reach both.
+const CARDBOARD_FRONT_Z = 0.205 // FRONT_Z_REST 0.18 + half depth 0.025
+const CARDBOARD_BACK_Z = -0.265 // BACK_Z_REST -0.24 - half depth 0.025
 
 const BAND_HALF_THICK = 0.009
 const BAND_HALF_WIDE = 0.08
 const BAND_SURFACE_GAP = 0.005
 
 const BAND_HALF_WIDTH = CARDBOARD_HALF_WIDTH + BAND_HALF_THICK + BAND_SURFACE_GAP
-const BAND_HALF_DEPTH = CARDBOARD_FRONT_Z + BAND_HALF_THICK + BAND_SURFACE_GAP
+const BAND_FRONT_DEPTH = CARDBOARD_FRONT_Z + BAND_HALF_THICK + BAND_SURFACE_GAP
+const BAND_BACK_DEPTH = CARDBOARD_BACK_Z - BAND_HALF_THICK - BAND_SURFACE_GAP
 
 const REST_SCALE = 1.0
 const LOOSE_SCALE = 1.2
@@ -44,14 +48,14 @@ const BANDS: BandSpec[] = [
 
 function makeBandCurve(): THREE.CatmullRomCurve3 {
   const points = [
-    new THREE.Vector3(BAND_HALF_WIDTH, 0, BAND_HALF_DEPTH),
-    new THREE.Vector3(BAND_HALF_WIDTH * 0.5, 0, BAND_HALF_DEPTH),
-    new THREE.Vector3(-BAND_HALF_WIDTH * 0.5, 0, BAND_HALF_DEPTH),
-    new THREE.Vector3(-BAND_HALF_WIDTH, 0, BAND_HALF_DEPTH),
-    new THREE.Vector3(-BAND_HALF_WIDTH, 0, -BAND_HALF_DEPTH),
-    new THREE.Vector3(-BAND_HALF_WIDTH * 0.5, 0, -BAND_HALF_DEPTH),
-    new THREE.Vector3(BAND_HALF_WIDTH * 0.5, 0, -BAND_HALF_DEPTH),
-    new THREE.Vector3(BAND_HALF_WIDTH, 0, -BAND_HALF_DEPTH),
+    new THREE.Vector3(BAND_HALF_WIDTH, 0, BAND_FRONT_DEPTH),
+    new THREE.Vector3(BAND_HALF_WIDTH * 0.5, 0, BAND_FRONT_DEPTH),
+    new THREE.Vector3(-BAND_HALF_WIDTH * 0.5, 0, BAND_FRONT_DEPTH),
+    new THREE.Vector3(-BAND_HALF_WIDTH, 0, BAND_FRONT_DEPTH),
+    new THREE.Vector3(-BAND_HALF_WIDTH, 0, BAND_BACK_DEPTH),
+    new THREE.Vector3(-BAND_HALF_WIDTH * 0.5, 0, BAND_BACK_DEPTH),
+    new THREE.Vector3(BAND_HALF_WIDTH * 0.5, 0, BAND_BACK_DEPTH),
+    new THREE.Vector3(BAND_HALF_WIDTH, 0, BAND_BACK_DEPTH),
   ]
   return new THREE.CatmullRomCurve3(points, true, 'catmullrom', 0.5)
 }
