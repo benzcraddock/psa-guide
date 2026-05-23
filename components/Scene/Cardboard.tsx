@@ -15,10 +15,10 @@ const FRONT_Z_REST = 0.18
 const BACK_Z_REST = -0.24
 const OFFSCREEN_OFFSET = 4.0
 
-const FRONT_SLIDE_START = 0.40
-const FRONT_SLIDE_END = 0.45
-const BACK_SLIDE_START = 0.41
-const BACK_SLIDE_END = 0.46
+const FRONT_SLIDE_START = 0.50
+const FRONT_SLIDE_END = 0.55
+const BACK_SLIDE_START = 0.51
+const BACK_SLIDE_END = 0.56
 
 export default function Cardboard() {
   const frontRef = useRef<THREE.Mesh>(null)

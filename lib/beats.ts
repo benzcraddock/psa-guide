@@ -45,7 +45,7 @@ export const beats: Beat[] = [
   {
     id: 'waterfall',
     scrollStart: 0.35,
-    scrollEnd: 0.40,
+    scrollEnd: 0.50,
     mode: '3d',
     copy: {
       num: '03.5',
@@ -55,8 +55,8 @@ export const beats: Beat[] = [
   },
   {
     id: 'cardboard',
-    scrollStart: 0.40,
-    scrollEnd: 0.45,
+    scrollStart: 0.50,
+    scrollEnd: 0.56,
     mode: '3d',
     copy: {
       num: '04',
@@ -66,8 +66,8 @@ export const beats: Beat[] = [
   },
   {
     id: 'rubber-bands',
-    scrollStart: 0.45,
-    scrollEnd: 0.50,
+    scrollStart: 0.56,
+    scrollEnd: 0.62,
     mode: '3d',
     copy: {
       num: '04.5',

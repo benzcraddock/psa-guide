@@ -13,7 +13,7 @@ import Sleeve from './Sleeve'
 import Waterfall from './Waterfall'
 
 const ROTATE_START = 0.35
-const ROTATE_END = 0.50
+const ROTATE_END = 0.56
 const ROTATE_MAX = Math.PI / 3.5
 
 const MOUSE_TILT_Y = 0.09

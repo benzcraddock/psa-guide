@@ -22,6 +22,9 @@ const SAVER_TAB_HEIGHT = 0.55
 
 const SETTLE_Y = -1.0
 
+// How far behind its final z each card starts, so it travels in from depth.
+const ENTRY_DEPTH = 1.1
+
 const ROTATION_MAX = Math.PI / 15
 
 const CORNER_DISCARD_GLSL = `#include <clipping_planes_fragment>
@@ -51,6 +54,7 @@ interface WaterfallCardProps {
   restY: number
   side: 'left' | 'right'
   renderOrderBase: number
+  tint: string
 }
 
 export default function WaterfallCard({
@@ -61,6 +65,7 @@ export default function WaterfallCard({
   restY,
   side,
   renderOrderBase,
+  tint,
 }: WaterfallCardProps) {
   const groupRef = useRef<THREE.Group>(null)
 
@@ -78,11 +83,14 @@ export default function WaterfallCard({
   const rotSign = side === 'left' ? 1 : -1
 
   const path = useMemo(() => {
+    // Cards enter from deep behind the hero and curve forward into their tight
+    // stacked z only as they reach center, so the slide reads as "going behind"
+    // Charizard instead of sweeping coplanar through it.
     return new THREE.CatmullRomCurve3(
       [
-        new THREE.Vector3(sideSign * 6, 0, zOffset),
-        new THREE.Vector3(sideSign * 4, restY * 0.4, zOffset),
-        new THREE.Vector3(sideSign * 2, restY * 0.85, zOffset),
+        new THREE.Vector3(sideSign * 6, 0, zOffset - ENTRY_DEPTH),
+        new THREE.Vector3(sideSign * 4, restY * 0.4, zOffset - ENTRY_DEPTH * 0.75),
+        new THREE.Vector3(sideSign * 2, restY * 0.85, zOffset - ENTRY_DEPTH * 0.35),
         new THREE.Vector3(0, restY, zOffset),
         new THREE.Vector3(0, SETTLE_Y, zOffset),
       ],
@@ -103,12 +111,13 @@ export default function WaterfallCard({
     return attachCornerDiscard(
       new THREE.MeshStandardMaterial({
         map: frontTexture,
+        color: new THREE.Color(tint),
         roughness: 0.5,
         metalness: 0,
         toneMapped: false,
       }),
     )
-  }, [frontTexture])
+  }, [frontTexture, tint])
 
   const cardBackMaterial = useMemo(() => {
     backTexture.colorSpace = THREE.SRGBColorSpace
